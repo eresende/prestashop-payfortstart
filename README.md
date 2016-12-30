@@ -10,19 +10,21 @@ cd app
 docker build -t payfortstart/prestashop-app .
 ```
 
-### Run prestashop instance for configuration.
+### Run Prestashop instance for configuration.
 Create a Demo customer with login **demo@example.com** and password **12345678**
 ```
 docker run --name app -d -p 80:80 payfortstart/prestashop-app
 ```
 
-### After instalation remove folder /var/www/html/install
+### After instalation remove folder */var/www/html/install*
 ```
 docker exec -it app rm -fr /var/www/html/install
 ```
 
-### And change admin folder to the one recomended by prestashop
-When accessing http:s//app/admin. Save this new admin folder for later use.
+### And change admin folder to the one recomended by Prestashop
+When accessing http://app/admin. Save this new admin folder for later use.
+Don't forget to add the entry **app** to your **/etc/hosts** file
+
 ```
 docker exec -it app mv /var/www/html/admin /var/www/html/[new_admin_folder]
 ```
@@ -44,12 +46,12 @@ cd ../app-plugin
 docker build -t payfortstart/prestashop-plugin .
 ```
 
-### Run prestashop instance with plugin for configuration.
-Activate payfortstart plugin and setup credentials with payment accepted
+### Run Prestashop instance with plugin for configuration.
+Activate Payfort Start plugin and setup credentials with payment accepted
 ```
 docker run --name app -d -p 80:80 payfortstart/prestashop-plugin
 ```
-### Commit new configured prestashop with plugin payfortstart ready
+### Commit new configured Prestashop with plugin Payfort Start ready
 ```
 docker commit -m "Prestashop with Payfort Start configured" app payfortstart/prestashop-plugin:configured
 docker stop app
@@ -64,7 +66,7 @@ cd ../test
 docker build -t payfortstart/prestashop-test .
 ```
 
-### Run the prestashop app
+### Run the Prestashop app
 ```
 docker run -d --name app payfortstart/prestashop-plugin:configured
 ```
@@ -78,12 +80,12 @@ docker run -d --name test --link app:app payfortstart/prestashop-test
 docker exec -it test /tests/vendor/bin/phpunit /tests/payfort.php
 ```
 
-Output of the test should be
+Output of the test should be like this:
 
 ```
 PHPUnit 5.7.5 by Sebastian Bergmann and contributors.
 
-.                                                                   1 / 1 (100%)
+1 / 1 (100%)
 
 Time: 22.49 seconds, Memory: 3.50MB
 
