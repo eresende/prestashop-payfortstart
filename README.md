@@ -63,7 +63,7 @@ docker rm app
 ## Running tests
 ```
 cd ../test
-docker build -t payfortstart/prestashop-test .
+docker build -t eresende/prestashop-test .
 ```
 
 ### Run the Prestashop app

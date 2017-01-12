@@ -1,4 +1,4 @@
-FROM payfortstart/prestashop-app:configured
+FROM eresende/prestashop-app:configured
 
 RUN curl -SL -o prestashop-payfort-start.zip https://github.com/payfort/prestashop/archive/master.zip \
 	&& unzip prestashop-payfort-start.zip -d /usr/src/ \
