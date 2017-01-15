@@ -68,12 +68,12 @@ docker build -t eresende/prestashop-test .
 
 ### Run the Prestashop app
 ```
-docker run -d --name app payfortstart/prestashop-plugin:configured
+docker run -d --name app eresende/prestashop-plugin
 ```
 
 ### Run test image with phantomjs running
 ```
-docker run -d --name test --link app:app payfortstart/prestashop-test
+docker run -d --name test --link app:app eresende/prestashop-test
 ```
 ### Run tests against test image
 ```
