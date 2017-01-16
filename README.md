@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/eresende/prestashop-payfortstart.svg?branch=master)](https://travis-ci.org/eresende/prestashop-payfortstart)
+
+
 # HOW-TO
 
 This guide helps you to build this testing framework for Prestashop with Payfort Start plugin installed.
