@@ -1,6 +1,9 @@
 sudo: required
 services:
 - docker
+addons:
+  hosts:
+    app
 before_install:
 # - docker build -t eresende/prestashop-test test
 - docker run -d --name app eresende/prestashop-plugin:configured
