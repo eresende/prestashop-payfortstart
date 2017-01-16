@@ -1,12 +1,12 @@
 sudo: required
 services:
 - docker
+before_install:
+- docker build -t eresende/prestashop-test test
+- docker run -d --name app eresende/prestashop-plugin:configured
+- docker ps -a
 addons:
   hosts:
     app
-before_install:
-#- docker build -t eresende/prestashop-test test
-- docker run -d --name app eresende/prestashop-plugin:configured
-- docker ps -a
 script:
 - docker run --link app:app eresende/prestashop-test /bin/sh -c "xvfb-run -a bundle exec rspec"
