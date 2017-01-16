@@ -5,7 +5,7 @@ addons:
   hosts:
     app
 before_install:
-# - docker build -t eresende/prestashop-test test
+- docker build -t eresende/prestashop-test test
 - docker run -d --name app eresende/prestashop-plugin:configured
 - docker ps -a
 script:
