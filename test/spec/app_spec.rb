@@ -22,7 +22,7 @@ describe 'Activate Payfort Start plugin' do
 
     find(:xpath, '//*[@id="module-list"]/tbody/tr[137]/td[4]/div/div/a').click
 
-    sleep 5
+    sleep 10
 
     find(:xpath, '//*[@id="proceed-install-anyway"]').click    
 
