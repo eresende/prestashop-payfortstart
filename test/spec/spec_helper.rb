@@ -28,7 +28,7 @@ Capybara.app_host = 'http://app'
 driver = :webkit
 Capybara.default_driver = driver
 Capybara.javascript_driver = driver
-Capybara.default_wait_time = 5
+Capybara.default_max_wait_time = 5
 
 Capybara.run_server = false
 
