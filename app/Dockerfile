@@ -1,10 +1,11 @@
-FROM payfortstart/lamp
+FROM prestashop/prestashop:1.6
 
-RUN apt-get update && apt-get install unzip
+MAINTAINER Eusebio Resende <eresende2k@gmail.com>
 
-RUN curl -o prestashop_1.6.1.10.zip -SL https://download.prestashop.com/download/old/prestashop_1.6.1.10.zip \
-	&& unzip prestashop_1.6.1.10.zip -d /usr/src/ \
-	&& rm prestashop_1.6.1.10.zip \
-	&& chown -R www-data:www-data /usr/src/prestashop
+RUN apt-get update && apt-get -y install git
+RUN curl -SL -o prestashop-payfort-start.zip https://github.com/payfort/prestashop/archive/master.zip \
+	&& unzip prestashop-payfort-start.zip -d /usr/src/
 
-RUN tar cf - --one-file-system -C /usr/src/prestashop . | tar xf -
+COPY config_files/docker_run.sh /tmp/
+
+CMD ["/tmp/docker_run.sh"]
