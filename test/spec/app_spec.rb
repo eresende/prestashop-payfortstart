@@ -21,9 +21,6 @@ describe 'Activate Payfort Start plugin' do
     expect(page).to have_text("List of modules")
 
     find(:xpath, '//*[@id="module-list"]/tbody/tr[137]/td[4]/div/div/a').click
-
-    sleep 10
-
     find(:xpath, '//*[@id="proceed-install-anyway"]').click    
 
     expect(page).to have_text("Configure")

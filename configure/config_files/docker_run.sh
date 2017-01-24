@@ -77,8 +77,10 @@ if [ ! -f ./config/settings.inc.php  ]; then
 	chown www-data:www-data -R /var/www/html/
 fi
 
-if [ -d /tmp/payfort-prestashop/payfortstart ]; then
-	mv /tmp/payfort-prestashop/payfortstart /var/www/html/modules/
+if [ -d /usr/src/prestashop-master/payfortstart ]; then
+	chown -R www-data:www-data /usr/src/prestashop-master/payfortstart \
+	&& mv /usr/src/prestashop-master/payfortstart /var/www/html/modules/ \
+	&& rm -fr /usr/src/prestashop-master*
 fi
 
 echo "\n* Almost ! Starting Apache now\n";
