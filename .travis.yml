@@ -9,6 +9,6 @@ before_install:
 - docker build -t eresende/prestashop-test test
 - docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=admin -d mysql
 - docker run -d --link some-mysql:mysql -e PS_DOMAIN=app -e PS_INSTALL_AUTO=1 -e PS_FOLDER_ADMIN=management -e PS_FOLDER_INSTALL=setup -e DB_SERVER=mysql --name app eresende/prestashop-app
-- sleep 30;
+- sleep 60;
 script:
 - docker run --link app:app eresende/prestashop-test /bin/sh -c "ping -c 10 app; xvfb-run -a bundle exec rspec"
