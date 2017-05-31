@@ -1,17 +1,9 @@
 #!/bin/sh
 
-if [ $DB_SERVER = "localhost" ] || [ $DB_SERVER = "127.0.0.1" ]; then
-	echo "\n* Starting internal MySQL server ...";
-
-	echo "\n /!\ WARNING : The MySQL server will be shortly removed from this container !"
-	echo "\n /!\ An external server will be required."
-	service mysql start
-	if [ $DB_PASSWD != "" ] && [ ! -f ./config/settings.inc.php  ]; then
-		echo "\n* Grant access to MySQL server ...";
-		mysql -h $DB_SERVER -P $DB_PORT -u $DB_USER -p$DB_PASSWD --execute="GRANT ALL ON *.* to $DB_USER@'localhost' IDENTIFIED BY '$DB_PASSWD'; " 2> /dev/null;
-		mysql -h $DB_SERVER -P $DB_PORT -u $DB_USER -p$DB_PASSWD --execute="GRANT ALL ON *.* to $DB_USER@'%' IDENTIFIED BY '$DB_PASSWD'; " 2> /dev/null;
-		mysql -h $DB_SERVER -P $DB_PORT -u $DB_USER -p$DB_PASSWD --execute="flush privileges; " 2> /dev/null;
-	fi
+if [ "$DB_SERVER" = "<to be defined>" -a $PS_INSTALL_AUTO = 1 ]; then
+	echo >&2 'error: You requested automatic PrestaShop installation but MySQL server address is not provided '
+	echo >&2 '  You need to specify DB_SERVER in order to proceed'
+	exit 1
 fi
 
 RET=1
@@ -77,9 +69,9 @@ if [ ! -f ./config/settings.inc.php  ]; then
 	chown www-data:www-data -R /var/www/html/
 fi
 
-if [ -d /usr/src/prestashop-master/payfortstart ]; then
-	chown -R www-data:www-data /usr/src/prestashop-master/payfortstart \
-	&& mv /usr/src/prestashop-master/payfortstart /var/www/html/modules/ \
+if [ -d /usr/src/prestashop-master/startpayments ]; then
+	chown -R www-data:www-data /usr/src/prestashop-master/startpayments \
+	&& mv /usr/src/prestashop-master/startpayments /var/www/html/modules/ \
 	&& rm -fr /usr/src/prestashop-master*
 fi
 
